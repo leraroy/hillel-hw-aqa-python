@@ -33,8 +33,7 @@ for j in range(len(lst[0])):
         col_values.append(lst[i][j])
     col_values.sort()
     for ii in range(len(lst)):
-        qwert = ii
-        res[ii][j] = col_values[qwert]
+        res[ii][j] = col_values[ii]
 print("->")
 
 for i in res:
