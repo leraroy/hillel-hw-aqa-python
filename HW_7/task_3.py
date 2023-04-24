@@ -38,8 +38,9 @@ def second_largest_number_with_method_sort(lst_numbers):
         return lst_without_duplicate[len(lst_without_duplicate)-2]
     return None
 
-print(second_largest_number_with_method_sort([4, 2, 1, 5, 2, 5, 7]))
 print(second_largest_number_without_method_sort([4, 2, 1, 5, 2, 5, 7]))
+print(second_largest_number_with_method_sort([4, 2, 1, 5, 2, 5, 7]))
+
 
 
 
