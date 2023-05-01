@@ -18,4 +18,4 @@ def generator(m, n):
 
 
 for i in generator(3, 4):
-    print(i, end=' ')
+    print(i)
