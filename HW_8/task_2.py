@@ -32,9 +32,9 @@ def skip(condition, reason=''):
     return param
 
 
-@skip(condition=False, reason='Skipped because of JIRA-123 bug')
-def test_two_plus_two(a, b):
-    return a + b
+@skip(condition=True, reason='Skipped because of JIRA-123 bug')
+def test_two_plus_two():
+    assert 2 + 2 == 5
 
 
-print(test_two_plus_two(45, 45))  # Skipped because of JIRA-123 bug
+test_two_plus_two()  # Skipped because of JIRA-123 bug
