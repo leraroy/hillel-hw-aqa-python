@@ -27,5 +27,10 @@ Please write me how are you doing? Goodbye...
 
 import re
 
-result = re.findall(r"(?:^|(?:[.!?]\s))(\w+\.?)", text)
-print(' '.join(result).capitalize())
+
+def generate_sentence(text: str) -> str:
+    result = re.findall(r"(?:^|(?:[.!?]\s))(\w+\.?)", text)
+    return ' '.join(result).capitalize()
+
+
+print(generate_sentence(text))
