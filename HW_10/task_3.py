@@ -22,10 +22,10 @@ assert custom_zip(seq1, seq2, full=True, default="Q") == [(1, 9), (2, 8), (3, 7)
 """
 
 
-def custom_zip(*args, full=False, default=None):
-    iters = [iter(arg) for arg in args]
-    min_len = min(len(it) for it in args)
-    max_len = max(len(it) for it in args)
+def custom_zip(*sequences, full=False, default=None):
+    iters = [iter(seq) for seq in sequences]
+    min_len = min(len(it) for it in sequences)
+    max_len = max(len(it) for it in sequences)
     lst = []
     if full:
         for i in range(max_len):
