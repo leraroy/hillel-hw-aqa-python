@@ -38,28 +38,39 @@ A: {
 
 
 class AttributePrinterMixin:
-
-    def to_dict(self):
-        def filter_attribute(field_name: str):
-            class_name = type(self).__name__
-            start_with = '_' + class_name
-            if start_with in field_name:
-                return field_name.replace(start_with + '__', '')
-            elif field_name.startswith('_'):
-                return field_name[1:]
-            else:
-                return field_name
-
-        return {filter_attribute(key): value for key, value in self.__dict__.items()}
-
     def __str__(self):
-        class_name = type(self).__name__
-        attributes = [f"{key}: {value}" for key, value in self.to_dict().items()]
-        return class_name + ": {\n\t" + '\n\t'.join(attributes) + "\n}"
+        result = {}
+        resulted_str = ""
+        for key, value in self.__dict__.items():
+            if key.startswith('_'):
+                if '__' in key:
+                    key = key[key.find('__') + len('__'):]
+                    result[key] = value
+                else:
+                    result[key[1:]] = value
+            else:
+                result[key] = value
+
+        for key, value in result.items():
+            resulted_str += f"\n\t{key}: {value}"
+        return self.__class__.__name__ + ": {" + resulted_str + "\n}"
 
 
-class A(AttributePrinterMixin):
+class C(object):
     def __init__(self):
+        super(C, self).__init__()
+        self.__qwerty = "qwerty_in_b"
+
+
+class B(object):
+    def __init__(self):
+        super(B, self).__init__()
+        self.__privat_in_b = "privat_in_b"
+
+
+class A(B, C, AttributePrinterMixin):
+    def __init__(self):
+        super(A, self).__init__()
         self.public_filed = 3
         self._protected_field = 'q'
         self.__private_field = [1, 2, 3]
