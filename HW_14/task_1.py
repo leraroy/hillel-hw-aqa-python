@@ -59,7 +59,7 @@ class AttributePrinterMixin:
 class C(object):
     def __init__(self):
         super(C, self).__init__()
-        self.__qwerty = "qwerty_in_b"
+        self.__qwerty = "qwerty_in_c"
 
 
 class B(object):
