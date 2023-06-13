@@ -178,8 +178,16 @@ class Test:
             assert str(value) in result
 
     @pytest.mark.parametrize("area", [
-        0, 1, 10, 200
+        0, 10, 1510, 200
     ])
+    @pytest.mark.xfail(reason="One of the Pixel components is not in range of [0, 255]")
     def test_check_get_pixel_near(self, setup, area):
         result = setup.get_pixel_near(area)
+        print(result)
+
+    @pytest.mark.parametrize("area", [
+        0, 10, 1510, 200
+    ])
+    def test_check_get_pixel_near_in_range(self, setup, area):
+        result = setup.get_pixel_near_in_range(area)
         print(result)

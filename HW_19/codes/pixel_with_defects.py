@@ -115,16 +115,24 @@ class Pixel:
     def __repr__(self):
         return f"Pixel({self.__r}, {self.__g}, {self.__b})"
 
-    # add self._convert_to_byte for Pixel components
-    # Если в результате применения операторов, какая-то компонента будет меньше 0, ее необходимо установить в 0.
-    # Если в результате применения операторов, какая-то компонента будет больше 255, ее необходимо установить в 255.
     # add self._check_if_value_is_int_or_float
     def get_pixel_near(self, area):
         self._check_if_value_is_int_or_float(area)
         neighbourhood = -area + 2 * area * random.random()
-        return Pixel(self._convert_to_byte(self.r + neighbourhood),
-                     self._convert_to_byte(self.b + neighbourhood),
-                     self._convert_to_byte(self.g + neighbourhood))
+        return Pixel(self.r + neighbourhood,
+                     self.b + neighbourhood,
+                     self.g + neighbourhood)
+
+    # the code will be executed until the components are in the range [0, 255]
+    def get_pixel_near_in_range(self, area):
+        self._check_if_value_is_int_or_float(area)
+        while True:
+            neighbourhood = -area + 2 * area * random.random()
+            new_r = self.r + neighbourhood
+            new_g = self.g + neighbourhood
+            new_b = self.b + neighbourhood
+            if all(0 <= p <= 255 for p in [new_r, new_g, new_b]):
+                return Pixel(new_r, new_g, new_b)
 
     @staticmethod
     def _check_if_value_is_int_or_float(n):
