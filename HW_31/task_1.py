@@ -50,7 +50,6 @@ def generate_random_content(size):
 диапазоне от `size/2` до `size` символов.
 
 def file_generator(directory, number_of_files, size)
-Осторожно: file_generator('files', 200, 1000_000) ~150 Mb
 """
 
 
